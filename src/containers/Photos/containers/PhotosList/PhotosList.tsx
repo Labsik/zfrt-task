@@ -27,9 +27,6 @@ const PhotosList = () => {
   const { albumId } = useSelector(getPhotosByAlbum());
   const { searchQ } = useSelector(getPhotosSearch());
 
-  console.log("albId:", albumId, albumId === null, typeof albumId === "number");
-  console.log("currentPage:", currentPage, perPage, totalCount);
-
   const dispatch = useDispatch();
   const pages: Array<number> = [];
   const totalCountPages = albumId !== null ? 1 : totalCount;
@@ -39,8 +36,6 @@ const PhotosList = () => {
   const photosFilteredArrList = filteredPhotoArr?.map((photo: IPhoto) => <PhotoCard key={photo.id} {...photo} />);
 
   createPages(pages, pagesCount, currentPage);
-
-  console.log("pages", pages);
 
   useEffect(() => {
     if (typeof albumId !== "number") {

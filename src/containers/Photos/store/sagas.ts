@@ -10,13 +10,11 @@ import { getPhotosByAlbum, getPhotosPage, getPhotosSearch } from "./selectors";
 function* fetchPhotosSaga() {
   try {
     const { currentPage, perPage } = yield select(getPhotosPage());
-    const { albumId } = yield select(getPhotosByAlbum());
     const { searchQ } = yield select(getPhotosSearch());
-    console.log(currentPage, perPage, albumId, searchQ);
+
     const { data }: { data: IPhoto[] } = yield call(() =>
       axios.get(`${photosURL}?_page=${currentPage}&_limit=${perPage}&q=${searchQ}`),
     );
-    console.log("data", data);
     yield put(actions.fetchPhotosSuccess(data));
   } catch (error) {
     yield put(actions.fetchPhotosFailure(error as string));
@@ -26,10 +24,9 @@ function* fetchPhotosSaga() {
 function* fetchFilteredPhotosByAlbumSaga() {
   try {
     const { albumId } = yield select(getPhotosByAlbum());
-
     const { searchQ } = yield select(getPhotosSearch());
+
     const { data }: { data: IPhoto[] } = yield call(() => axios.get(`${albumsURL}/${albumId}/photos?q=${searchQ}`));
-    console.log("data", data);
     yield put(actions.fetchPhotosByAlbumSuccess(data));
   } catch (error) {
     yield put(actions.fetchPhotosByAlbumFailure(error as string));
@@ -39,7 +36,6 @@ function* fetchFilteredPhotosByAlbumSaga() {
 function* fetchAlbumsSaga() {
   try {
     const { data }: { data: IAlbum[] } = yield call(() => axios.get(`${albumsURL}`));
-    console.log("album", data);
     yield put(actions.fetchAlbumsSuccess(data));
   } catch (error) {
     yield put(actions.fetchAlbumsFailure(error as string));

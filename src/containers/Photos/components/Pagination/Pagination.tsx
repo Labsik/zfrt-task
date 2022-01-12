@@ -11,8 +11,6 @@ interface Props {
 const Pagination = ({ pages, currentPage }: Props) => {
   const dispatch = useDispatch();
 
-  console.log(pages);
-
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination justify-content-center">
