@@ -13,9 +13,9 @@ export interface IAlbum {
 }
 
 export interface IPageOpt {
-  perPage: number | null;
-  currentPage: number | null;
-  totalCount: number | null;
+  perPage: number;
+  currentPage: number;
+  totalCount: number;
 }
 
 export interface IAlbumOpt {
@@ -27,12 +27,12 @@ export interface ISearchOpt {
 }
 
 export interface IPhotosState {
-  photosArr: IPhoto[] | null;
+  photosArr: IPhoto[];
   isLoading: boolean;
   error: null | string;
   albumsArr: IAlbum[] | null;
   filteredPhotoArr: IPhoto[] | null;
-  pageOpt: IPageOpt | any;
-  albumOpt: IAlbumOpt | any;
-  searchOpt: ISearchOpt | any;
+  pageOpt: IPageOpt;
+  albumOpt: IAlbumOpt;
+  searchOpt: ISearchOpt;
 }

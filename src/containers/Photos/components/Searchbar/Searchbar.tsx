@@ -15,7 +15,7 @@ import "./Searchbar.css";
 const Searchbar = () => {
   const dispatch = useDispatch();
   const { albumId } = useSelector(getPhotosByAlbum());
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const searchHandler = () => {
     dispatch(setCurrentPage(1));
